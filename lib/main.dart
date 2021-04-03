@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+// This project
+import 'package:worktimer/styles/sizes.dart';
+
 void main() {
   runApp(MyApp());
 }
 
-String formatTime(int milliseconds){
+String formatTime(int milliseconds) {
   var secs = milliseconds ~/ 1000;
   var hours = (secs ~/ 3600).toString().padLeft(2, '0');
   var minutes = ((secs % 3600) ~/ 60).toString().padLeft(2, '0');
-  var seconds = (secs % 60).toString().padLeft(2, '0');
+  //var seconds = (secs % 60).toString().padLeft(2, '0');
 
-  return "$hours:$minutes:$seconds";
+  return "$hours:$minutes";
 }
 
 class MyApp extends StatelessWidget {
@@ -56,7 +59,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   Stopwatch _stopwatch;
   Timer _timer;
 
@@ -66,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _stopwatch = Stopwatch();
     _timer = new Timer.periodic(new Duration(milliseconds: 30), (timer) {
       setState(() {});
-     });
+    });
   }
 
   @override
@@ -93,54 +95,97 @@ class _MyHomePageState extends State<MyHomePage> {
     _stopwatch.reset();
   }
 
-  // Play icon 
+  // Play icon
   Widget playButton() => IconButton(
-    icon: Icon(Icons.play_arrow_rounded),
-    color: Colors.grey.shade600,
-    onPressed: _startStopwatch,
-  );
+        icon: Icon(Icons.play_arrow_rounded),
+        color: Colors.grey.shade600,
+        onPressed: _startStopwatch,
+      );
 
-  // Pause icon 
+  // Pause icon
   Widget pauseButton() => IconButton(
-    icon: Icon(Icons.pause_rounded),
-    color: Colors.grey.shade600,
-    onPressed: _pauseStopwatch,
-  );
+        icon: Icon(Icons.pause_rounded),
+        color: Colors.grey.shade600,
+        onPressed: _pauseStopwatch,
+      );
 
   // Stop icon
   Widget stopButton() => IconButton(
-    icon: Icon(Icons.stop_rounded),
-    color: Colors.grey.shade600,
-    onPressed: _stopStopwatch,
-  );
+        icon: Icon(Icons.stop_rounded),
+        color: Colors.grey.shade600,
+        onPressed: _stopStopwatch,
+      );
 
-  // Buttons
-  Widget _buttons() => Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      playButton(),
-      pauseButton(),
-      stopButton(),
-    ],
-  );
-  
+  // Tabs
+  Widget _nav(BuildContext context) => Container(
+        height: 0.1 * height(context),
+        decoration: new BoxDecoration(
+          color: Colors.grey.shade200,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("Timer    "),
+            Text("Projects    "),
+            Text("History")
+          ],
+        ),
+      );
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
+  // Time
+  Widget _time(BuildContext context) => Container(
+        height: 0.3 * height(context),
+        decoration: new BoxDecoration(
+          color: Colors.grey.shade100,
+        ),
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               formatTime(_stopwatch.elapsedMilliseconds),
-              style: Theme.of(context).textTheme.headline4,
+              style: new TextStyle()
+                  .merge(Theme.of(context).textTheme.headline1)
+                  .merge(TextStyle(fontWeight: FontWeight.bold)),
             ),
-            _buttons(),
+          ],
+        ),
+      );
+
+  // Projects
+  Widget _projects(BuildContext context) => Container(
+      height: 0.45 * height(context),
+      decoration: new BoxDecoration(
+        color: Colors.grey.shade300,
+      ),
+      child: Row(
+        children: <Widget>[Text("Project A")],
+      ));
+
+  // Buttons
+  Widget _buttons(BuildContext context) => Container(
+        height: 0.15 * height(context),
+        decoration: new BoxDecoration(color: Colors.green),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            playButton(),
+            pauseButton(),
+            stopButton(),
+          ],
+        ),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _nav(context),
+            _time(context),
+            _projects(context),
+            _buttons(context),
           ],
         ),
       ),
