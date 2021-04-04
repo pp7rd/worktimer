@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // Play icon
   Widget playButton(BuildContext context) => IconButton(
         icon: Icon(Icons.play_arrow_rounded),
-        color: Colors.grey.shade600,
+        color: Colors.grey.shade800,
         onPressed: _startStopwatch,
         iconSize: 0.075 * height(context),
       );
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // Pause icon
   Widget pauseButton(BuildContext context) => IconButton(
         icon: Icon(Icons.pause_rounded),
-        color: Colors.grey.shade600,
+        color: Colors.grey.shade800,
         onPressed: _pauseStopwatch,
         iconSize: 0.075 * height(context),
       );
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // Stop icon
   Widget stopButton(BuildContext context) => IconButton(
         icon: Icon(Icons.stop_rounded),
-        color: Colors.grey.shade600,
+        color: Colors.grey.shade800,
         onPressed: _stopStopwatch,
         iconSize: 0.075 * height(context),
       );
