@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:google_fonts/google_fonts.dart';
 
 // This project
 import 'package:worktimer/styles/sizes.dart';
@@ -24,16 +25,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.lightBlue[800],
+        accentColor: Colors.cyan[600],
+        fontFamily: 'Georgia',
+        textTheme: TextTheme(
+          headline1: TextStyle(fontFamily: GoogleFonts.ptMono().fontFamily),
+          headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+          bodyText2: TextStyle(
+              fontSize: 14.0,
+              fontFamily: GoogleFonts.courierPrime().toString()),
+        ),
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -96,32 +97,35 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   // Play icon
-  Widget playButton() => IconButton(
+  Widget playButton(BuildContext context) => IconButton(
         icon: Icon(Icons.play_arrow_rounded),
         color: Colors.grey.shade600,
         onPressed: _startStopwatch,
+        iconSize: 0.075 * height(context),
       );
 
   // Pause icon
-  Widget pauseButton() => IconButton(
+  Widget pauseButton(BuildContext context) => IconButton(
         icon: Icon(Icons.pause_rounded),
         color: Colors.grey.shade600,
         onPressed: _pauseStopwatch,
+        iconSize: 0.075 * height(context),
       );
 
   // Stop icon
-  Widget stopButton() => IconButton(
+  Widget stopButton(BuildContext context) => IconButton(
         icon: Icon(Icons.stop_rounded),
         color: Colors.grey.shade600,
         onPressed: _stopStopwatch,
+        iconSize: 0.075 * height(context),
       );
 
   // Tabs
   Widget _nav(BuildContext context) => Container(
         height: 0.1 * height(context),
-        decoration: new BoxDecoration(
-          color: Colors.grey.shade200,
-        ),
+        //decoration: new BoxDecoration(
+        //  color: Colors.grey.shade200,
+        //),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -135,17 +139,23 @@ class _MyHomePageState extends State<MyHomePage> {
   // Time
   Widget _time(BuildContext context) => Container(
         height: 0.3 * height(context),
-        decoration: new BoxDecoration(
-          color: Colors.grey.shade100,
-        ),
+        //decoration: new BoxDecoration(
+        //  color: Colors.grey.shade100,
+        //),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              formatTime(_stopwatch.elapsedMilliseconds),
-              style: new TextStyle()
-                  .merge(Theme.of(context).textTheme.headline1)
-                  .merge(TextStyle(fontWeight: FontWeight.bold)),
+            Column(
+              children: [
+                SizedBox(height: 0.15 * height(context), width: width(context)),
+                Text(
+                  formatTime(_stopwatch.elapsedMilliseconds),
+                  style: Theme.of(context).textTheme.headline1.merge(TextStyle(
+                        letterSpacing: 0.1,
+                        fontSize: 0.1 * height(context),
+                      )),
+                ),
+              ],
             ),
           ],
         ),
@@ -154,9 +164,9 @@ class _MyHomePageState extends State<MyHomePage> {
   // Projects
   Widget _projects(BuildContext context) => Container(
       height: 0.45 * height(context),
-      decoration: new BoxDecoration(
-        color: Colors.grey.shade300,
-      ),
+      //decoration: new BoxDecoration(
+      //  color: Colors.grey.shade300,
+      //),
       child: Row(
         children: <Widget>[Text("Project A")],
       ));
@@ -164,13 +174,12 @@ class _MyHomePageState extends State<MyHomePage> {
   // Buttons
   Widget _buttons(BuildContext context) => Container(
         height: 0.15 * height(context),
-        decoration: new BoxDecoration(color: Colors.green),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            playButton(),
-            pauseButton(),
-            stopButton(),
+            playButton(context),
+            pauseButton(context),
+            stopButton(context),
           ],
         ),
       );
