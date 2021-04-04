@@ -161,14 +161,47 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
 
+  String dropdownValue = 'Project A';
+
   // Projects
   Widget _projects(BuildContext context) => Container(
       height: 0.45 * height(context),
       //decoration: new BoxDecoration(
       //  color: Colors.grey.shade300,
       //),
+      alignment: Alignment.topCenter,
       child: Row(
-        children: <Widget>[Text("Project A")],
+        children: <Widget>[
+          SizedBox(
+              width: 0.3 * width(context), height: 0.055 * height(context)),
+          Container(
+              height: 0.055 * height(context),
+              width: 0.4 * width(context),
+              color: Colors.grey.shade900,
+              alignment: Alignment.center,
+              child: DropdownButton(
+                value: dropdownValue,
+                dropdownColor: Colors.grey.shade700,
+                style: const TextStyle(color: Colors.white, fontSize: 18),
+                onChanged: (String newValue) {
+                  setState(() {
+                    dropdownValue = newValue;
+                  });
+                },
+                iconEnabledColor: Colors.grey.shade500,
+                underline: Container(
+                  height: 2,
+                  color: Colors.grey.shade900,
+                ),
+                items: <String>['Project A', 'Project B', 'Project C']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              )),
+        ],
       ));
 
   // Buttons
