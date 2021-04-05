@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 // This project
 import 'package:worktimer/styles/sizes.dart';
 import 'pages/timer/timer-page.dart';
-import 'pages/projects/projec-page.dart';
+import 'pages/projects/project-page.dart';
 
 void main() {
   runApp(MyApp());
