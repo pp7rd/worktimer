@@ -1,25 +1,11 @@
-// This project
-import 'dart:ffi';
+import 'dart:core';
 
-import 'package:flutter/material.dart';
+class Project {
+  String name;
+  Duration duration = new Duration();
 
-import 'mock-projects.dart';
-
-class ProjectPage extends StatefulWidget {
-  @override
-  _ProjectPage createState() => _ProjectPage();
-}
-
-class _ProjectPage extends State<ProjectPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
-        ),
-      ),
-    );
+  // Constructor
+  Project(String name) {
+    this.name = name;
   }
 }

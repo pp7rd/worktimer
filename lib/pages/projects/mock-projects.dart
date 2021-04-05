@@ -1,5 +1,7 @@
+import 'project.dart';
+
 var Projects = [
-  'Project A',
-  'Project B',
-  'Project C',
+  new Project('Project A'),
+  new Project('Project B'),
+  new Project('Project C'),
 ];
