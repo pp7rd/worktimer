@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 // This project
 import 'package:worktimer/styles/sizes.dart';
 import './pages/timer/timer.dart';
+import './pages/projects/project.dart';
 
 void main() {
   runApp(MyApp());
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
           body: TabBarView(
             children: [
               TimerPage(),
-              Icon(Icons.directions_transit),
+              ProjectPage(),
               Icon(Icons.directions_bike),
             ],
           ),

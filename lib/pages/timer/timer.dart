@@ -24,6 +24,11 @@ class _TimerPage extends State<TimerPage> {
   Stopwatch _stopwatch;
   Timer _timer;
 
+  // State of buttons
+  //bool _playButtonEnabled = true;
+  //bool _pauseButtonEnabled = false;
+  //bool _stopButtonEnabled = false;
+
   @override
   void initState() {
     super.initState();
