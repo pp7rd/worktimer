@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:worktimer/model/worktime.dart';
 
 // This project
 import '../styles/sizes.dart';
+import '../viewmodel/worktime-wm.dart';
 
 String formatTime(int milliseconds) {
   var secs = milliseconds ~/ 1000;
@@ -16,23 +18,27 @@ String formatTime(int milliseconds) {
 }
 
 class TimerPage extends StatefulWidget {
+  final WorktimeWM worktimeWM;
+
+  // Constructor
+  TimerPage(this.worktimeWM);
+
   @override
-  _TimerPage createState() => _TimerPage();
+  _TimerPage createState() => _TimerPage(this.worktimeWM);
 }
 
 class _TimerPage extends State<TimerPage> {
+  WorktimeWM _worktimeWM;
   Stopwatch _stopwatch;
   Timer _timer;
 
-  // State of buttons
-  //bool _playButtonEnabled = true;
-  //bool _pauseButtonEnabled = false;
-  //bool _stopButtonEnabled = false;
+  // Constructor
+  _TimerPage(this._worktimeWM);
 
   @override
   void initState() {
     super.initState();
-    _stopwatch = Stopwatch();
+    _stopwatch = _worktimeWM.worktime.stopwatch;
     _timer = new Timer.periodic(new Duration(milliseconds: 30), (timer) {
       setState(() {});
     });

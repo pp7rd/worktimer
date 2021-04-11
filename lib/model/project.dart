@@ -5,7 +5,5 @@ class Project {
   Duration duration = new Duration();
 
   // Constructor
-  Project(String name) {
-    this.name = name;
-  }
+  Project(this.name);
 }
