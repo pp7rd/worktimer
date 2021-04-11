@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // This project
-import '../../styles/sizes.dart';
+import '../styles/sizes.dart';
 
 String formatTime(int milliseconds) {
   var secs = milliseconds ~/ 1000;

@@ -1,4 +1,4 @@
-import 'project.dart';
+import '../model/project.dart';
 
 var Projects = [
   new Project('Project A'),
