@@ -33,6 +33,7 @@ class _TimerPage extends State<TimerPage> {
   ProjectsVM _projectsVM;
   Stopwatch _stopwatch;
   Timer _timer;
+  String _selectedProjectName;
 
   // Constructor
   _TimerPage(this._worktimeVM, this._projectsVM);
@@ -40,6 +41,7 @@ class _TimerPage extends State<TimerPage> {
   @override
   void initState() {
     super.initState();
+    _selectedProjectName = _projectsVM.getSelectedProject().name;
     _stopwatch = _worktimeVM.worktime.stopwatch;
     _timer = new Timer.periodic(new Duration(milliseconds: 30), (timer) {
       setState(() {});
@@ -119,8 +121,6 @@ class _TimerPage extends State<TimerPage> {
         ),
       );
 
-  String dropdownValue = 'Project A';
-
   // Projects
   Widget _projects(BuildContext context) => Container(
       height: 0.45 * height(context),
@@ -138,12 +138,13 @@ class _TimerPage extends State<TimerPage> {
               color: Colors.grey.shade900,
               alignment: Alignment.center,
               child: DropdownButton(
-                value: dropdownValue,
+                value: _selectedProjectName,
                 dropdownColor: Colors.grey.shade700,
                 style: const TextStyle(color: Colors.white, fontSize: 18),
                 onChanged: (String newValue) {
                   setState(() {
-                    dropdownValue = newValue;
+                    _selectedProjectName = newValue;
+                    _projectsVM.selectProject(newValue);
                   });
                 },
                 iconEnabledColor: Colors.grey.shade500,

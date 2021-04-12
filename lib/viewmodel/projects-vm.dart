@@ -18,6 +18,9 @@ class ProjectsVM {
       new Project('Project C'),
       new Project('Project D'),
     ];
+
+    // Assign default value
+    selectedProject = projects.first;
   }
 
   List<Project> getProjects() {
@@ -28,8 +31,16 @@ class ProjectsVM {
     return projects.map((project) => project.name).toList();
   }
 
-  void selectProject(Project project) {
-    selectedProject = project;
+  int selectProject(String projectname) {
+    for (Project p in projects) {
+      if (p.name.compareTo(projectname) == 0) {
+        selectedProject = p;
+        return 0;
+      }
+    }
+
+    // -1 if no project found
+    return -1;
   }
 
   Project getSelectedProject() {
