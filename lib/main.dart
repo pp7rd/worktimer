@@ -4,10 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 // This project
 import 'package:worktimer/styles/sizes.dart';
-import 'package:worktimer/viewmodel/worktime-wm.dart';
+import 'package:worktimer/viewmodel/projects-vm.dart';
+import 'package:worktimer/viewmodel/worktime-vm.dart';
 import 'view/timer-page.dart';
 import 'view/project-page.dart';
-import 'model/worktime.dart';
 
 void main() {
   runApp(MyApp());
@@ -57,6 +57,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // Init worktimer
   WorktimeWM _worktimerWM = new WorktimeWM();
+  ProjectsVM _projectsVM = new ProjectsVM();
 
   Widget _tabController(BuildContext context) => DefaultTabController(
         length: 3,
@@ -81,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           body: TabBarView(
             children: [
-              TimerPage(_worktimerWM),
+              TimerPage(_worktimerWM, _projectsVM),
               ProjectPage(),
               Icon(Icons.directions_bike),
             ],

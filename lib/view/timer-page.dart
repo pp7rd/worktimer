@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:worktimer/model/worktime.dart';
 
 // This project
 import '../styles/sizes.dart';
-import '../viewmodel/worktime-wm.dart';
+import '../viewmodel/worktime-vm.dart';
+import '../viewmodel/projects-vm.dart';
 
 String formatTime(int milliseconds) {
   var secs = milliseconds ~/ 1000;
@@ -19,21 +19,23 @@ String formatTime(int milliseconds) {
 
 class TimerPage extends StatefulWidget {
   final WorktimeWM worktimeWM;
+  final ProjectsVM projectsVM;
 
   // Constructor
-  TimerPage(this.worktimeWM);
+  TimerPage(this.worktimeWM, this.projectsVM);
 
   @override
-  _TimerPage createState() => _TimerPage(this.worktimeWM);
+  _TimerPage createState() => _TimerPage(this.worktimeWM, this.projectsVM);
 }
 
 class _TimerPage extends State<TimerPage> {
   WorktimeWM _worktimeWM;
+  ProjectsVM _projectsVM;
   Stopwatch _stopwatch;
   Timer _timer;
 
   // Constructor
-  _TimerPage(this._worktimeWM);
+  _TimerPage(this._worktimeWM, this._projectsVM);
 
   @override
   void initState() {
@@ -149,7 +151,8 @@ class _TimerPage extends State<TimerPage> {
                   height: 2,
                   color: Colors.grey.shade900,
                 ),
-                items: <String>['Project A', 'Project B', 'Project C']
+                items: _projectsVM
+                    .getProjectNames()
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
