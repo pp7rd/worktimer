@@ -2,11 +2,11 @@
 import '../model/worktime.dart';
 import '../model/project.dart';
 
-class WorktimeWM {
+class WorktimeVM {
   Worktime worktime;
 
   // Constructor
-  WorktimeWM() {
+  WorktimeVM() {
     worktime = new Worktime();
     worktime.stopwatch = new Stopwatch();
   }

@@ -56,7 +56,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // Init worktimer
-  WorktimeWM _worktimerWM = new WorktimeWM();
+  WorktimeVM _worktimerWM = new WorktimeVM();
   ProjectsVM _projectsVM = new ProjectsVM();
 
   Widget _tabController(BuildContext context) => DefaultTabController(

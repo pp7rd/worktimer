@@ -18,29 +18,29 @@ String formatTime(int milliseconds) {
 }
 
 class TimerPage extends StatefulWidget {
-  final WorktimeWM worktimeWM;
+  final WorktimeVM worktimeVM;
   final ProjectsVM projectsVM;
 
   // Constructor
-  TimerPage(this.worktimeWM, this.projectsVM);
+  TimerPage(this.worktimeVM, this.projectsVM);
 
   @override
-  _TimerPage createState() => _TimerPage(this.worktimeWM, this.projectsVM);
+  _TimerPage createState() => _TimerPage(this.worktimeVM, this.projectsVM);
 }
 
 class _TimerPage extends State<TimerPage> {
-  WorktimeWM _worktimeWM;
+  WorktimeVM _worktimeVM;
   ProjectsVM _projectsVM;
   Stopwatch _stopwatch;
   Timer _timer;
 
   // Constructor
-  _TimerPage(this._worktimeWM, this._projectsVM);
+  _TimerPage(this._worktimeVM, this._projectsVM);
 
   @override
   void initState() {
     super.initState();
-    _stopwatch = _worktimeWM.worktime.stopwatch;
+    _stopwatch = _worktimeVM.worktime.stopwatch;
     _timer = new Timer.periodic(new Duration(milliseconds: 30), (timer) {
       setState(() {});
     });
