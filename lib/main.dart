@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
           body: TabBarView(
             children: [
               TimerPage(_worktimerWM, _projectsVM),
-              ProjectPage(),
+              ProjectPage(_projectsVM),
               Icon(Icons.directions_bike),
             ],
           ),
