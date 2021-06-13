@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   google_fonts: ^2.0.0
   material_floating_search_bar: ^0.3.4
+  sqflite_common_ffi:
+  path:
 
 
   # The following adds the Cupertino Icons font to your application.

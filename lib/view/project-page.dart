@@ -130,7 +130,7 @@ class _ProjectPage extends State<ProjectPage> {
   void initState() {
     super.initState();
 
-    _projects = _projectsVM.projects;
+    _projects = _projectsVM.getProjects();
   }
 
   @override
